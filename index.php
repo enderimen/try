@@ -1,3 +1,4 @@
+<?php include 'php/connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,31 +28,41 @@
 
   <body id="page-top">
 
+
+    <?php 
+        $query  = "Select * From menu";
+        $result = mysqli_query($connect, $query);
+    ?>
+
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Ender İMEN <br>Yazılım Mühendisliği</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Ender İMEN</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#team">Team</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
+            
+            <?php 
+
+                if (mysqli_num_rows($result) > 0) {
+
+                    while ($row = mysqli_fetch_array($result)) { ?>
+
+                        <li class="nav-item">
+                          <a class="nav-link  js-scroll-trigger" href="<?php echo $row["link"]; ?>">
+                            <?php echo $row["menuAdi"]; ?>
+                          </a>
+                        </li>
+                  <?php 
+                    }
+                }
+
+             ?>
+        
           </ul>
         </div>
       </div>
