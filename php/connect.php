@@ -7,10 +7,8 @@
 
 	$connect = mysqli_connect($localhost, $username, $password, $DBname);
 
-	if ($connect) {
-		echo "Bağlantı Sağlandı.";
-	}else{
-		echo "no connect";
+	if (!$connect) {
+		echo "Bağlantı Sağlanamadı.";	
 	}
 
  ?>
