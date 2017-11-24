@@ -31,7 +31,10 @@
 
     <?php 
         $query  = "Select * From menu";
-        $result = mysqli_query($connect, $query);
+        $resultMenu = mysqli_query($connect, $query);
+
+        $query  = "Select * From jumbotron";
+        $resultJumbotron = mysqli_query($connect, $query);
     ?>
 
 
@@ -48,9 +51,9 @@
             
             <?php 
 
-                if (mysqli_num_rows($result) > 0) {
+                if (mysqli_num_rows($resultMenu) > 0) {
 
-                    while ($row = mysqli_fetch_array($result)) { ?>
+                    while ($row = mysqli_fetch_array($resultMenu)) { ?>
 
                         <li class="nav-item">
                           <a class="nav-link  js-scroll-trigger" href="<?php echo $row["link"]; ?>">
@@ -72,9 +75,18 @@
     <header class="masthead">
       <div class="container">
         <div class="intro-text">
-          <div class="intro-lead-in">Welcome To Our Studio!</div>
-          <div class="intro-heading">It's Nice To Meet You</div>
-          <a class="btn btn-xl js-scroll-trigger" href="#services">Tell Me More</a>
+
+          <?php 
+            if (mysqli_num_rows($resultJumbotron) > 0) {
+
+                  $row = mysqli_fetch_array($resultJumbotron);
+              }
+          ?>
+
+          <div class="intro-lead-in"><?php echo $row["bannerText"] ?></div>
+          <div class="intro-heading"><?php echo $row["bannerTitle"] ?></div>
+          <a class="btn btn-xl js-scroll-trigger" href="#services">Daha Fazla</a>
+        
         </div>
       </div>
     </header>
@@ -84,7 +96,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Services</h2>
+            <h2 class="section-heading">Servisler</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
@@ -94,7 +106,7 @@
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 class="service-heading">E-Commerce</h4>
+            <h4 class="service-heading">E-Ticaret</h4>
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
           <div class="col-md-4">
@@ -102,7 +114,7 @@
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 class="service-heading">Responsive Design</h4>
+            <h4 class="service-heading">Responsive Tasarım</h4>
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
           <div class="col-md-4">
@@ -110,7 +122,7 @@
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 class="service-heading">Web Security</h4>
+            <h4 class="service-heading">Web Güvenliği</h4>
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
         </div>
@@ -122,7 +134,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Portfolio</h2>
+            <h2 class="section-heading">Portfolyo</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
@@ -137,8 +149,8 @@
               <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <h4>Threads</h4>
-              <p class="text-muted">Illustration</p>
+              <h4>Şekiller</h4>
+              <p class="text-muted">3D Yazıcı</p>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item">
@@ -151,8 +163,8 @@
               <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <h4>Explore</h4>
-              <p class="text-muted">Graphic Design</p>
+              <h4>Keşfet</h4>
+              <p class="text-muted">Grafik Tasarımı</p>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item">
@@ -165,8 +177,8 @@
               <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <h4>Finish</h4>
-              <p class="text-muted">Identity</p>
+              <h4>Bitirim</h4>
+              <p class="text-muted">Kimlik</p>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item">
@@ -179,8 +191,8 @@
               <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <h4>Lines</h4>
-              <p class="text-muted">Branding</p>
+              <h4>Frontend</h4>
+              <p class="text-muted">Responsive</p>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item">
@@ -193,8 +205,8 @@
               <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <h4>Southwest</h4>
-              <p class="text-muted">Website Design</p>
+              <h4>Backend</h4>
+              <p class="text-muted">Web Tasarım</p>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item">
@@ -207,8 +219,8 @@
               <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <h4>Window</h4>
-              <p class="text-muted">Photography</p>
+              <h4>Mobil</h4>
+              <p class="text-muted">Fotoğrafçılık</p>
             </div>
           </div>
         </div>
@@ -220,7 +232,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">About</h2>
+            <h2 class="section-heading">Hakkımızda</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
@@ -301,7 +313,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Our Amazing Team</h2>
+            <h2 class="section-heading">İşte Bizim takımımız</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
@@ -420,38 +432,38 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Contact Us</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading">BİZİMLE İLETİŞİME GEÇ</h2>
+            <h3 class="section-subheading text-muted">Web alanında her şey için...</h3>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <form id="contactForm" name="sentMessage" novalidate>
+            <form id="contactForm" action = "php/transaction.php" method = "POST">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input class="form-control" id="name" type="text" placeholder="Your Name *" required data-validation-required-message="Please enter your name.">
+                    <input class="form-control" id="name" name="username" type="text" placeholder="Adınız*" >
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="email" type="email" placeholder="Your Email *" required data-validation-required-message="Please enter your email address.">
+                    <input class="form-control" id="email" name="email" type="email" placeholder="E-Posta Adresi">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required data-validation-required-message="Please enter your phone number.">
+                    <input class="form-control" id="subject" name="subject" type="text" placeholder="Konu Başlığı Giriniz *">
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <textarea class="form-control" id="message" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
+                    <textarea class="form-control" id="message" name="message" placeholder="Mesajınız *"></textarea>
                     <p class="help-block text-danger"></p>
                   </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-lg-12 text-center">
                   <div id="success"></div>
-                  <button id="sendMessageButton" class="btn btn-xl" type="submit">Send Message</button>
+                  <input id="sendMessageButton" name="sendMessageButton" class="btn btn-xl" type="submit" value="Mesaj Gönder">
                 </div>
               </div>
             </form>
@@ -465,7 +477,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <span class="copyright">Copyright &copy; Your Website 2017</span>
+            <span class="copyright">Copyright &copy; enderimen. 2017</span>
           </div>
           <div class="col-md-4">
             <ul class="list-inline social-buttons">
@@ -487,14 +499,7 @@
             </ul>
           </div>
           <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
+            
           </div>
         </div>
       </div>
@@ -516,18 +521,18 @@
               <div class="col-lg-8 mx-auto">
                 <div class="modal-body">
                   <!-- Project Details Go Here -->
-                  <h2>Project Name</h2>
+                  <h2>Proje Adı</h2>
                   <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/01-full.jpg" alt="">
                   <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                   <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Threads</li>
-                    <li>Category: Illustration</li>
+                    <li>Tarih:  2017</li>
+                    <li>Müşteri: Threads</li>
+                    <li>Kategori: Çizim</li>
                   </ul>
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
-                    Close Project</button>
+                    Kapat</button>
                 </div>
               </div>
             </div>
